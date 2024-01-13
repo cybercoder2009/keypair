@@ -71,22 +71,24 @@ export const verify_async = async (signature, message, verifying_key) => {
 
 // for integration test
 // console.log(`[js] process.argv.length=${process.argv.length}`)
-if (process.argv.length > 2) {
-    (async () => {
-        let res
-        switch(process.argv[2]) {
-            case 'sk':     
-                res = sk(); break;
-            case 'vk':     
-                res = await vk_async(process.argv[3]);  break;
-            case 'sign':   
-                res = await sign_async(process.argv[3], process.argv[4]); break;
-            case 'verify': 
-                res = await verify_async(process.argv[3], process.argv[4], process.argv[5]); break;
-            default:     
-                res = '';
-        }
-        // log out stdout for integration test
-        console.log(res)
-    })()
+if(typeof process !== "undefined") {
+    if (process.argv.length > 2) {
+        (async () => {
+            let res
+            switch(process.argv[2]) {
+                case 'sk':     
+                    res = sk(); break;
+                case 'vk':     
+                    res = await vk_async(process.argv[3]);  break;
+                case 'sign':   
+                    res = await sign_async(process.argv[3], process.argv[4]); break;
+                case 'verify': 
+                    res = await verify_async(process.argv[3], process.argv[4], process.argv[5]); break;
+                default:     
+                    res = '';
+            }
+            // log out stdout for integration test
+            console.log(res)
+        })()
+    }
 }
