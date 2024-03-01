@@ -37,6 +37,9 @@ export const vk_async = async (signing_key) => {
  * @returns signature     String(Hex)
  */
 export const sign = (message, signing_key) => {
+    console.log(`sign message=${message} signing_key=${signing_key}`)
+
+
     const bytes = new TextEncoder().encode(message)
     return ed.etc.bytesToHex(ed.sign(bytes, signing_key))
 }
